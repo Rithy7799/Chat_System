@@ -2,6 +2,8 @@
 
 A browser-based live chat using regular HTTP requests, file sharing, and SQLite persistence.
 
+<img width="1321" height="573" alt="image" src="https://github.com/user-attachments/assets/94e7d6b0-9950-481c-a0db-c23391122c16" />
+
 ## Local development
 
 Activate the workspace virtual environment and install dependencies:
