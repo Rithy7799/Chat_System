@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f5ef">
+  <title>Chatting Room | Live Chat</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='commonroom-icon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css', v='20260930.2') }}">
+  <script src="{{ url_for('static', filename='session.js', v='20260930.2') }}" defer></script>
+  <script src="{{ url_for('static', filename='chat.js', v='20260930.2') }}" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="side-panel">
+      <a class="wordmark" href="/" aria-label="Chatting Room home"><span class="mark">C</span> chatting room</a>
+      <a class="profile-nav" href="/profile"><span class="profile-nav-icon">◎</span> Manage profile <span class="profile-nav-arrow">↗</span></a>
+      <div class="room-label">YOUR SPACE</div>
+      <button class="mobile-group-toggle" id="mobile-group-toggle" type="button" aria-expanded="false" aria-controls="group-menu">
+        <span class="mobile-group-toggle-label">GROUPS</span>
+        <span class="mobile-group-current" id="mobile-group-current">Study Room</span>
+        <span class="mobile-group-chevron" aria-hidden="true">⌄</span>
+      </button>
+      <div class="group-menu" id="group-menu">
+        <nav class="group-list" id="group-list" aria-label="Chat groups"></nav>
+        <button class="create-group-button" id="open-create-group" type="button"><span>＋</span> Create group</button>
+      </div>
+      <div class="side-rule"></div>
+      <div class="room-label">ROOM DETAILS</div>
+      <p class="room-description">A shared table for questions, ideas, and the occasional breakthrough.</p>
+      <div class="side-footer"><span class="secure-dot"></span> Private local room</div>
+    </aside>
+    <section class="chat-panel" aria-label="Study room chat">
+      <header class="topbar">
+        <div class="room-heading"><div class="eyebrow">CHATTING ROOM / OPEN CHAT</div><h1 id="active-room-name">Study Room</h1></div>
+        <div class="presence-wrap"><span class="presence-indicator" id="connection-indicator"></span><span id="connection-label">Connecting</span><span class="presence-divider"></span><span id="online-count">0 online</span></div>
+      </header>
+      <div class="message-frame">
+        <section class="message-area" id="message-area" aria-live="polite" aria-label="Messages">
+          <div class="drop-overlay" id="drop-overlay" hidden aria-hidden="true">Drop files to share</div>
+          <div class="welcome-block" id="welcome-block">
+            <div class="welcome-rule"><span>THE ROOM IS YOURS</span></div>
+            <div class="welcome-content"><div class="welcome-icon">✳</div><h2>Good ideas start<br>with a hello.</h2><p>Say what you're working on. Ask the question that's been stuck in your head.</p></div>
+          </div>
+          <ol class="message-list" id="message-list"></ol>
+        </section>
+        <div class="scroll-controls" id="scroll-controls" hidden aria-label="Message navigation">
+          <button class="scroll-button" id="scroll-to-top" type="button" aria-label="Scroll to oldest message" title="Scroll to oldest message">↑</button>
+          <button class="scroll-button" id="scroll-to-bottom" type="button" aria-label="Scroll to latest message" title="Scroll to latest message">↓</button>
+        </div>
+      </div>
+      <div class="compose-area">
+        <div class="name-row"><span class="name-caption">SPEAKING AS</span><span class="name-value" id="current-name">Student</span><a class="change-name" href="/profile">Manage profile</a></div>
+        <form class="composer" id="message-form">
+          <label class="sr-only" for="message-input">Write a message</label>
+          <textarea id="message-input" name="message" rows="1" maxlength="2000" placeholder="Share a thought with the room..." required></textarea>
+          <div class="composer-bottom"><div class="compose-tools"><button class="attach-button" id="attach-button" type="button" aria-label="Attach a file" title="Attach a file">＋</button><input id="file-input" type="file" accept=".png,.jpg,.jpeg,.gif,.webp,.pdf,.txt,.csv" multiple hidden><span class="composer-hint">Enter to send <span>·</span> Shift + Enter for a new line</span></div><button class="send-button" type="submit" aria-label="Send message" title="Send message"><span>Send</span><span class="send-arrow">↗</span></button></div>
+        </form>
+        <div class="status-message" id="status-message" role="status"></div>
+      </div>
+    </section>
+  </main>
+  <div class="preview-overlay" id="preview-overlay" hidden>
+    <section class="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="preview-title">
+      <header class="preview-header"><h2 id="preview-title">File preview</h2><button id="close-preview" type="button" aria-label="Close preview">×</button></header>
+      <div class="preview-content" id="preview-content"></div>
+    </section>
+  </div>
+  <div class="group-overlay" id="group-overlay" hidden>
+    <form class="group-dialog" id="group-form">
+      <div class="dialog-kicker">MAKE A SPACE</div>
+      <h2>Create a group</h2>
+      <p>Start a separate room for a class, project, or topic.</p>
+      <label for="group-name-input">GROUP NAME</label>
+      <input id="group-name-input" maxlength="40" placeholder="e.g. Biology study group" required>
+      <div class="group-dialog-actions"><button class="group-cancel" id="cancel-create-group" type="button">Cancel</button><button class="join-button" type="submit">Create group <span>↗</span></button></div>
+    </form>
+  </div>
+</body>
+</html>
